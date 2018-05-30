@@ -8,6 +8,7 @@ import java.util.List;
 import org.duckdns.dbro94.texasholdemcalculator.domain.Card;
 import org.duckdns.dbro94.texasholdemcalculator.domain.CardSuit;
 import org.duckdns.dbro94.texasholdemcalculator.domain.CardValue;
+import org.duckdns.dbro94.texasholdemcalculator.domain.Rank;
 import org.junit.Test;
 
 public class HandEvaluatorTest {

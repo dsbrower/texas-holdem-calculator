@@ -1,4 +1,4 @@
-package org.duckdns.dbro94.texasholdemcalculator.util;
+package org.duckdns.dbro94.texasholdemcalculator.domain;
 
 public enum Rank {
     STRAIGHT_FLUSH(9),

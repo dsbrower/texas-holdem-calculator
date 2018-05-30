@@ -4,7 +4,7 @@ import org.duckdns.dbro94.texasholdemcalculator.domain.Card;
 import org.duckdns.dbro94.texasholdemcalculator.util.CardMapper;
 import org.duckdns.dbro94.texasholdemcalculator.util.Deck;
 import org.duckdns.dbro94.texasholdemcalculator.util.HandEvaluator;
-import org.duckdns.dbro94.texasholdemcalculator.util.Rank;
+import org.duckdns.dbro94.texasholdemcalculator.domain.Rank;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
