@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Simulation"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/lblWinPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Win Percentage: "
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@+id/winPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@+id/percentSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/lblTiePercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tie Percentage: "
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@+id/tiePercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@id/percentSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/lblLossPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loss Percentage: "
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@+id/lossPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@id/percentSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textColor="@color/text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/lblNumPlayersSim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Players: "
+                android:textColor="@color/text"/>
+
+            <TextView android:id="@+id/numPlayersSim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblH1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Hand Card 1:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/h1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblH2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Hand Card 2:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/h2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblF1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Flop Card 1:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/f1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblF2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Flop Card 2:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/f2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblF3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Flop Card 3:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/f3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblTurn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Turn:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/turn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/lblRiver"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="River:"
+                android:textColor="@color/text"/>
+
+            <EditText
+                android:id="@+id/river"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear"
+                android:onClick="clear"/>
+
+            <Button
+                android:id="@+id/fold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Folded"
+                android:onClick="fold"/>
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:onClick="submit"/>
+
+        </LinearLayout>\
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

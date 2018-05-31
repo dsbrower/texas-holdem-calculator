@@ -22,15 +22,47 @@ public class HandEvaluator {
 
     public static String evaluate(List<List<Card>> hands) {
         List<Card> playerHand = hands.get(0);
+        Pair<Rank, Integer[]> playerRank = evaluateHand(playerHand);
 
+        boolean win = false;
+        boolean tie = false;
 
-        // Compare player hand with cpu hands
+        for (int i = 1; i < hands.size(); i++) {
+            List<Card> cpuHand = hands.get(i);
+            Pair<Rank, Integer[]> cpuRank = evaluateHand(cpuHand);
 
+            if (cpuRank.getKey().getRankValue() > playerRank.getKey().getRankValue()) {
+                return LOSS;
+            }
+            else if (cpuRank.getKey().getRankValue() < playerRank.getKey().getRankValue()) {
+                win = true;
+            }
+            else {
+                for (int p = 0; p < playerRank.getValue().length; p++) {
+                    if (cpuRank.getValue()[p] > playerRank.getValue()[p]) {
+                        return LOSS;
+                    }
+                    else if (cpuRank.getValue()[p] < playerRank.getValue()[p]) {
+                        win = true;
+                        break;
+                    }
+                    else if (p == playerRank.getValue().length - 1) {
+                        tie = true;
+                        break;
+                    }
+                }
+            }
+        }
 
-
-
-
-        return null;
+        if (tie) {
+            return TIE;
+        }
+        else if (win) {
+            return WIN;
+        }
+        else {
+            return LOSS;
+        }
     }
 
     private static Pair<Rank, Integer[]> evaluateHand(List<Card> hand) {
@@ -50,27 +82,27 @@ public class HandEvaluator {
                 }
                 else {
                     Pair<Boolean, Integer[]> flush = isFlush(hand);
-                    if (fullHouse.getKey()) {
+                    if (flush.getKey()) {
                         return Pair.of(Rank.FLUSH, flush.getValue());
                     }
                     else {
                         Pair<Boolean, Integer[]> straight = isStraight(hand);
-                        if (fullHouse.getKey()) {
+                        if (straight.getKey()) {
                             return Pair.of(Rank.STRAIGHT, straight.getValue());
                         }
                         else {
                             Pair<Boolean, Integer[]> threeOfAKind = isThreeOfAKind(hand);
-                            if (fullHouse.getKey()) {
+                            if (threeOfAKind.getKey()) {
                                 return Pair.of(Rank.THREE_OF_A_KIND, threeOfAKind.getValue());
                             }
                             else {
                                 Pair<Boolean, Integer[]> twoPair = isTwoPair(hand);
-                                if (fullHouse.getKey()) {
+                                if (twoPair.getKey()) {
                                     return Pair.of(Rank.TWO_PAIR, twoPair.getValue());
                                 }
                                 else {
                                     Pair<Boolean, Integer[]> pair = isPair(hand);
-                                    if (fullHouse.getKey()) {
+                                    if (pair.getKey()) {
                                         return Pair.of(Rank.PAIR, pair.getValue());
                                     }
                                     else {
@@ -188,10 +220,10 @@ public class HandEvaluator {
                 int second = 0;
                 for (Card card : hand) {
                     if (card.getValue().getCardValue() > highest) {
-                        highest = card.getValue().getCardValue();
                         second = highest;
+                        highest = card.getValue().getCardValue();
                     }
-                    else if (card.getValue().getCardValue() > second) {
+                    else if (card.getValue().getCardValue() > second && card.getValue().getCardValue() != highest) {
                         second = card.getValue().getCardValue();
                     }
                 }
@@ -217,19 +249,24 @@ public class HandEvaluator {
         boolean hasThree = false;
         boolean hasPair = false;
         Integer[] power = {0, 0};
+        int highest = 0;
         for (Map.Entry<CardValue, Integer> entry : valueCount.entrySet()) {
             if (entry.getValue() >= 3) {
-                valueCount.remove(entry.getKey());
                 hasThree = true;
-                power[0] = entry.getKey().getCardValue();
-                break;
+                if (entry.getKey().getCardValue() > highest) {
+                    highest = entry.getKey().getCardValue();
+                }
             }
         }
+        power[0] = highest;
         for (Map.Entry<CardValue, Integer> entry : valueCount.entrySet()) {
+            if (entry.getKey().getCardValue() == power[0]) {
+                continue;
+            }
             if (entry.getValue() >= 2) {
                 hasPair = true;
                 if (power[1] < entry.getKey().getCardValue()) {
-                    entry.getKey().getCardValue();
+                    power[1] = entry.getKey().getCardValue();
                 }
             }
         }
@@ -309,11 +346,11 @@ public class HandEvaluator {
                         second = highest;
                         highest = card.getValue().getCardValue();
                     }
-                    else if (card.getValue().getCardValue() > second) {
+                    else if (card.getValue().getCardValue() > second && card.getValue().getCardValue() != highest) {
                         third = second;
                         second = card.getValue().getCardValue();
                     }
-                    else if (card.getValue().getCardValue() > third) {
+                    else if (card.getValue().getCardValue() > third && card.getValue().getCardValue() != highest && card.getValue().getCardValue() != second) {
                         third = card.getValue().getCardValue();
                     }
                 }
@@ -393,11 +430,11 @@ public class HandEvaluator {
                         second = highest;
                         highest = card.getValue().getCardValue();
                     }
-                    else if (card.getValue().getCardValue() > second && card.getValue().getCardValue() != power[0]) {
+                    else if (card.getValue().getCardValue() > second && card.getValue().getCardValue() != highest && card.getValue().getCardValue() != power[0]) {
                         third = second;
                         second = card.getValue().getCardValue();
                     }
-                    else if (card.getValue().getCardValue() > third && card.getValue().getCardValue() != power[0]) {
+                    else if (card.getValue().getCardValue() > third && card.getValue().getCardValue() != highest && card.getValue().getCardValue() != second && card.getValue().getCardValue() != power[0]) {
                         third = card.getValue().getCardValue();
                     }
                 }

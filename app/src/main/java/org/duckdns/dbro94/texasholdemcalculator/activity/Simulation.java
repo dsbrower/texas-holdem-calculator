@@ -1,28 +1,34 @@
-package org.duckdns.dbro94.texasholdemcalculator;
+package org.duckdns.dbro94.texasholdemcalculator.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
+import org.duckdns.dbro94.texasholdemcalculator.R;
 import org.duckdns.dbro94.texasholdemcalculator.domain.Card;
 import org.duckdns.dbro94.texasholdemcalculator.util.CardMapper;
 import org.duckdns.dbro94.texasholdemcalculator.util.Deck;
 import org.duckdns.dbro94.texasholdemcalculator.util.HandEvaluator;
-import org.duckdns.dbro94.texasholdemcalculator.domain.Rank;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+import static org.duckdns.dbro94.texasholdemcalculator.util.Constants.LOSS;
+import static org.duckdns.dbro94.texasholdemcalculator.util.Constants.TIE;
+import static org.duckdns.dbro94.texasholdemcalculator.util.Constants.WIN;
+
+public class Simulation extends AppCompatActivity {
 
     TextView winPercentage;
+    TextView tiePercentage;
+    TextView lossPercentage;
+    TextView txtNumPlayers;
     TextView txtH1;
     TextView txtH2;
     TextView txtF1;
@@ -30,13 +36,20 @@ public class MainActivity extends AppCompatActivity {
     TextView txtF3;
     TextView txtTurn;
     TextView txtRiver;
+    int numPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_simulation);
+
+        Intent sim = getIntent();
+        numPlayers = sim.getIntExtra("numPlayers", 5);
 
         winPercentage = (TextView) findViewById(R.id.winPercentage);
+        tiePercentage = (TextView) findViewById(R.id.tiePercentage);
+        lossPercentage = (TextView) findViewById(R.id.lossPercentage);
+        txtNumPlayers = (TextView) findViewById(R.id.numPlayersSim);
         txtH1 = (TextView) findViewById(R.id.h1);
         txtH2 = (TextView) findViewById(R.id.h2);
         txtF1 = (TextView) findViewById(R.id.f1);
@@ -44,9 +57,36 @@ public class MainActivity extends AppCompatActivity {
         txtF3 = (TextView) findViewById(R.id.f3);
         txtTurn = (TextView) findViewById(R.id.turn);
         txtRiver = (TextView) findViewById(R.id.river);
+
+        txtNumPlayers.setText(Integer.toString(numPlayers));
+    }
+
+    public void clear(View v) {
+        winPercentage.setText("");
+        tiePercentage.setText("");
+        lossPercentage.setText("");
+        txtH1.setText("");
+        txtH2.setText("");
+        txtF1.setText("");
+        txtF2.setText("");
+        txtF3.setText("");
+        txtTurn.setText("");
+        txtRiver.setText("");
+    }
+
+    public void fold(View v) {
+        if (numPlayers > 2) {
+            numPlayers--;
+            txtNumPlayers.setText(Integer.toString(numPlayers));
+            submit();
+        }
     }
 
     public void submit(View v) {
+        submit();
+    }
+
+    private void submit() {
         Card h1;
         Card h2;
         Card f1;
@@ -87,12 +127,18 @@ public class MainActivity extends AppCompatActivity {
             comm.add(river);
         }
 
-        winPercentage.setText(calc(hand, comm));
+        Double[] outcomes = calc(hand, comm);
+
+        winPercentage.setText(outcomes[0].toString());
+        tiePercentage.setText(outcomes[1].toString());
+        lossPercentage.setText(outcomes[2].toString());
     }
 
-    private String calc(List<Card> handOrig, List<Card> commOrig) {
+    private Double[] calc(List<Card> handOrig, List<Card> commOrig) {
 
         int wins = 0;
+        int ties = 0;
+        int losses = 0;
 
         for (int run = 0; run < 10000; run++) {
             List<Card> deck = Deck.getDeck();
@@ -120,46 +166,43 @@ public class MainActivity extends AppCompatActivity {
                 comm.add(deck.remove(0));
             }
 
-            List<Card> cpu1 = new LinkedList<>();
-            List<Card> cpu2 = new LinkedList<>();
-            List<Card> cpu3 = new LinkedList<>();
-            List<Card> cpu4 = new LinkedList<>();
-
-            cpu1.add(deck.remove(0));
-            cpu1.add(deck.remove(0));
-            cpu2.add(deck.remove(0));
-            cpu2.add(deck.remove(0));
-            cpu3.add(deck.remove(0));
-            cpu3.add(deck.remove(0));
-            cpu4.add(deck.remove(0));
-            cpu4.add(deck.remove(0));
-
-            cpu1.addAll(comm);
-            cpu2.addAll(comm);
-            cpu3.addAll(comm);
-            cpu4.addAll(comm);
+            List<List<Card>> hands = new LinkedList<>();
 
             List<Card> playerHand = new LinkedList<>(hand);
             playerHand.addAll(comm);
+            hands.add(playerHand);
 
-            Rank playerRank = HandEvaluator.evaluate(playerHand);
-            Rank cpu1Rank = HandEvaluator.evaluate(cpu1);
-            Rank cpu2Rank = HandEvaluator.evaluate(cpu2);
-            Rank cpu3Rank = HandEvaluator.evaluate(cpu3);
-            Rank cpu4Rank = HandEvaluator.evaluate(cpu4);
+            for (int j = 0; j < numPlayers - 1; j++) {
+                List<Card> cpu = new LinkedList<>();
+                cpu.add(deck.remove(0));
+                cpu.add(deck.remove(0));
+                cpu.addAll(comm);
+                hands.add(cpu);
+            }
 
-            if ((playerRank.getRankValue() > cpu1Rank.getRankValue())
-                    && (playerRank.getRankValue() > cpu2Rank.getRankValue())
-                    && (playerRank.getRankValue() > cpu3Rank.getRankValue())
-                    && (playerRank.getRankValue() > cpu4Rank.getRankValue())) {
-                wins++;
+            String outcome = HandEvaluator.evaluate(hands);
+
+            switch(outcome) {
+                case WIN:
+                    wins++;
+                    break;
+                case TIE:
+                    ties++;
+                    break;
+                case LOSS:
+                    losses++;
+                    break;
             }
 
         }
 
-        double percent = round((wins / 10000.0 * 100), 2);
+        double winPercent = round(((double)wins / ((double)wins + (double)ties + (double)losses) * 100), 2);
+        double tiePercent = round(((double)ties / ((double)wins + (double)ties + (double)losses) * 100), 2);
+        double lossPercent = round(((double)losses / ((double)wins + (double)ties + (double)losses) * 100), 2);
 
-        return Double.toString(percent);
+        Double[] outcomes = new Double[]{winPercent, tiePercent, lossPercent};
+
+        return outcomes;
     }
 
     public static double round(double value, int places) {

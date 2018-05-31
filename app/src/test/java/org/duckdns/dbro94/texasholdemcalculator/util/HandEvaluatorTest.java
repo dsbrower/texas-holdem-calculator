@@ -2,197 +2,402 @@ package org.duckdns.dbro94.texasholdemcalculator.util;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.apache.commons.lang3.tuple.Pair;
 import org.duckdns.dbro94.texasholdemcalculator.domain.Card;
-import org.duckdns.dbro94.texasholdemcalculator.domain.CardSuit;
-import org.duckdns.dbro94.texasholdemcalculator.domain.CardValue;
 import org.duckdns.dbro94.texasholdemcalculator.domain.Rank;
 import org.junit.Test;
+import org.powermock.reflect.internal.WhiteboxImpl;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class HandEvaluatorTest {
 
     @Test
-    public void testRoyalFlush() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.KING, CardSuit.CLUB));
-        hand.add(new Card(CardValue.QUEEN, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FIVE, CardSuit.HEART));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.JACK, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TEN, CardSuit.CLUB));
+    public void testEvaluateStraighFlush() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("KH"));
+        hand.add(CardMapper.getCard("JH"));
+        hand.add(CardMapper.getCard("10H"));
+        hand.add(CardMapper.getCard("QH"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT_FLUSH, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.STRAIGHT_FLUSH, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
     }
 
     @Test
-    public void testStraightFlush() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.NINE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.KING, CardSuit.CLUB));
-        hand.add(new Card(CardValue.QUEEN, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FIVE, CardSuit.HEART));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.JACK, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TEN, CardSuit.CLUB));
+    public void testEvaluateStraighFlushAceLow() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("3H"));
+        hand.add(CardMapper.getCard("2H"));
+        hand.add(CardMapper.getCard("4H"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT_FLUSH, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.STRAIGHT_FLUSH, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[0]);
     }
 
     @Test
-    public void testStraightFlushAceLow() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.THREE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FOUR, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TWO, CardSuit.CLUB));
-        hand.add(new Card(CardValue.JACK, CardSuit.HEART));
-        hand.add(new Card(CardValue.TEN, CardSuit.SPADE));
+    public void testEvaluateFourOfAKind() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("AC"));
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("4H"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT_FLUSH, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.FOUR_OF_A_KIND, outcome.getKey());
+        assertEquals("Unexpected outcome", 2, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[1]);
     }
 
     @Test
-    public void testStraightFlush7Club() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.THREE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FOUR, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TWO, CardSuit.CLUB));
-        hand.add(new Card(CardValue.JACK, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TEN, CardSuit.CLUB));
+    public void testEvaluateFullHouse() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("8H"));
+        hand.add(CardMapper.getCard("8C"));
+        hand.add(CardMapper.getCard("8S"));
+        hand.add(CardMapper.getCard("4H"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT_FLUSH, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.FULL_HOUSE, outcome.getKey());
+        assertEquals("Unexpected outcome", 2, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(8), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[1]);
     }
 
     @Test
-    public void testStraightFlush6Club() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.THREE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FOUR, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TWO, CardSuit.CLUB));
-        hand.add(new Card(CardValue.JACK, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TEN, CardSuit.SPADE));
+    public void testEvaluateFlush() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("6H"));
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("2H"));
+        hand.add(CardMapper.getCard("4S"));
+        hand.add(CardMapper.getCard("4H"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT_FLUSH, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.FLUSH, outcome.getKey());
+        assertEquals("Unexpected outcome", 5, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(6), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[2]);
+        assertEquals("Unexpected outcome", Integer.valueOf(4), outcome.getValue()[3]);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[4]);
     }
 
     @Test
-    public void testFourOfAKind() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.ACE, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.ACE, CardSuit.HEART));
-        hand.add(new Card(CardValue.ACE, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.NINE, CardSuit.HEART));
+    public void testEvaluateStraight() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("KC"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("10H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("QD"));
+        hand.add(CardMapper.getCard("JS"));
 
-        assertEquals("Wrong rank", Rank.FOUR_OF_A_KIND, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.STRAIGHT, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
     }
 
     @Test
-    public void testFullHOuse() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.ACE, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.ACE, CardSuit.HEART));
-        hand.add(new Card(CardValue.FIVE, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.NINE, CardSuit.HEART));
+    public void testEvaluateStraightAceLow() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("3D"));
+        hand.add(CardMapper.getCard("4S"));
 
-        assertEquals("Wrong rank", Rank.FULL_HOUSE, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.STRAIGHT, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[0]);
     }
 
     @Test
-    public void testFlush() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.SEVEN, CardSuit.CLUB));
-        hand.add(new Card(CardValue.SIX, CardSuit.HEART));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.JACK, CardSuit.CLUB));
-        hand.add(new Card(CardValue.NINE, CardSuit.CLUB));
+    public void testEvaluateThreeOfAKind() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("4S"));
 
-        assertEquals("Wrong rank", Rank.FLUSH, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.THREE_OF_A_KIND, outcome.getKey());
+        assertEquals("Unexpected outcome", 3, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[2]);
     }
 
     @Test
-    public void testStraightAceHigh() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.KING, CardSuit.CLUB));
-        hand.add(new Card(CardValue.QUEEN, CardSuit.HEART));
-        hand.add(new Card(CardValue.FIVE, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.JACK, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.TEN, CardSuit.CLUB));
+    public void testEvaluateTwoPair() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AC"));
+        hand.add(CardMapper.getCard("4S"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.TWO_PAIR, outcome.getKey());
+        assertEquals("Unexpected outcome", 3, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[2]);
     }
 
     @Test
-    public void testStraightAceLow() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.KING, CardSuit.CLUB));
-        hand.add(new Card(CardValue.FOUR, CardSuit.HEART));
-        hand.add(new Card(CardValue.FIVE, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.JACK, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.THREE, CardSuit.CLUB));
+    public void testEvaluatePair() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("8C"));
+        hand.add(CardMapper.getCard("4S"));
 
-        assertEquals("Wrong rank", Rank.STRAIGHT, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.PAIR, outcome.getKey());
+        assertEquals("Unexpected outcome", 4, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(8), outcome.getValue()[2]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[3]);
     }
 
     @Test
-    public void testThreeOfAKind() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.ACE, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.ACE, CardSuit.HEART));
-        hand.add(new Card(CardValue.KING, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.NINE, CardSuit.HEART));
+    public void testEvaluateHighCard() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("9D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("8C"));
+        hand.add(CardMapper.getCard("4S"));
 
-        assertEquals("Wrong rank", Rank.THREE_OF_A_KIND, HandEvaluator.evaluate(hand));
+        Pair<Rank, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "evaluateHand", hand);
+        assertEquals("Unexpected outcome", Rank.HIGH_CARD, outcome.getKey());
+        assertEquals("Unexpected outcome", 5, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(9), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(8), outcome.getValue()[2]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[3]);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[4]);
     }
 
     @Test
-    public void testTwoPair() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.ACE, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.SEVEN, CardSuit.HEART));
-        hand.add(new Card(CardValue.SEVEN, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.NINE, CardSuit.HEART));
+    public void testIsStraighFlush() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("KH"));
+        hand.add(CardMapper.getCard("JH"));
+        hand.add(CardMapper.getCard("10H"));
+        hand.add(CardMapper.getCard("QH"));
 
-        assertEquals("Wrong rank", Rank.TWO_PAIR, HandEvaluator.evaluate(hand));
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isStraightFlush", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
     }
 
     @Test
-    public void testPair() {
-        List<Card> hand = new ArrayList<>();
-        hand.add(new Card(CardValue.ACE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.ACE, CardSuit.DIAMOND));
-        hand.add(new Card(CardValue.SEVEN, CardSuit.HEART));
-        hand.add(new Card(CardValue.KING, CardSuit.SPADE));
-        hand.add(new Card(CardValue.TWO, CardSuit.SPADE));
-        hand.add(new Card(CardValue.FIVE, CardSuit.CLUB));
-        hand.add(new Card(CardValue.NINE, CardSuit.HEART));
+    public void testIsStraighFlushAceLow() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("3H"));
+        hand.add(CardMapper.getCard("2H"));
+        hand.add(CardMapper.getCard("4H"));
 
-        assertEquals("Wrong rank", Rank.PAIR, HandEvaluator.evaluate(hand));
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isStraightFlush", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[0]);
+    }
+
+    @Test
+    public void testIsFourOfAKind() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("AC"));
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("4H"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isFourOfAKind", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 2, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[1]);
+    }
+
+    @Test
+    public void testIsFullHouse() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("8H"));
+        hand.add(CardMapper.getCard("8C"));
+        hand.add(CardMapper.getCard("8S"));
+        hand.add(CardMapper.getCard("4H"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isFullHouse", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 2, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(8), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[1]);
+    }
+
+    @Test
+    public void testIsFlush() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("6H"));
+        hand.add(CardMapper.getCard("AH"));
+        hand.add(CardMapper.getCard("AD"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("2H"));
+        hand.add(CardMapper.getCard("4S"));
+        hand.add(CardMapper.getCard("4H"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isFlush", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 5, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(6), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[2]);
+        assertEquals("Unexpected outcome", Integer.valueOf(4), outcome.getValue()[3]);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[4]);
+    }
+
+    @Test
+    public void testIsStraight() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("KC"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("10H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("QD"));
+        hand.add(CardMapper.getCard("JS"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isStraight", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+    }
+
+    @Test
+    public void testIsStraightAceLow() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("3D"));
+        hand.add(CardMapper.getCard("4S"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isStraight", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 1, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(5), outcome.getValue()[0]);
+    }
+
+    @Test
+    public void testIsThreeOfAKind() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("4S"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isThreeOfAKind", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 3, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[2]);
+    }
+
+    @Test
+    public void testIsTwoPair() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("AC"));
+        hand.add(CardMapper.getCard("4S"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isTwoPair", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 3, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[2]);
+    }
+
+    @Test
+    public void testIsPair() throws Exception {
+        List<Card> hand = new LinkedList<>();
+        hand.add(CardMapper.getCard("AS"));
+        hand.add(CardMapper.getCard("2C"));
+        hand.add(CardMapper.getCard("2D"));
+        hand.add(CardMapper.getCard("5H"));
+        hand.add(CardMapper.getCard("7C"));
+        hand.add(CardMapper.getCard("8C"));
+        hand.add(CardMapper.getCard("4S"));
+
+        Pair<Boolean, Integer[]> outcome = WhiteboxImpl.invokeMethod(HandEvaluator.class, "isPair", hand);
+        assertEquals("Unexpected outcome", true, outcome.getKey());
+        assertEquals("Unexpected outcome", 4, outcome.getValue().length);
+        assertEquals("Unexpected outcome", Integer.valueOf(2), outcome.getValue()[0]);
+        assertEquals("Unexpected outcome", Integer.valueOf(14), outcome.getValue()[1]);
+        assertEquals("Unexpected outcome", Integer.valueOf(8), outcome.getValue()[2]);
+        assertEquals("Unexpected outcome", Integer.valueOf(7), outcome.getValue()[3]);
     }
 
 }
