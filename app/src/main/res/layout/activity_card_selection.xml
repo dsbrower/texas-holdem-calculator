@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CardSelection"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/aceS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="A♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/twoS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="2♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/threeS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="3♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/fourS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="4♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/fiveS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="5♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/sixS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="6♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/sevenS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="7♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/eightS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="8♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/nineS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="9♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/tenS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="10♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/jackS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="J♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/queenS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="Q♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kingS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="K♠"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/aceC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="A♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/twoC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="2♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/threeC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="3♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/fourC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="4♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/fiveC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="5♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/sixC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="6♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/sevenC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="7♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/eightC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="8♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/nineC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="9♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/tenC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="10♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/jackC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="J♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/queenC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="Q♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kingC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="K♣"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+            <Button
+                android:id="@+id/aceH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="A♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/twoH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="2♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/threeH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="3♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/fourH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="4♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/fiveH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="5♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/sixH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="6♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/sevenH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="7♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/eightH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="8♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/nineH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="9♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/tenH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="10♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/jackH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="J♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/queenH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="Q♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/kingH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="K♥"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/aceD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="A♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/twoD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="2♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/threeD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="3♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/fourD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="4♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/fiveD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="5♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/sixD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="6♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/sevenD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="7♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/eightD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="8♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/nineD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="9♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/tenD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="10♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/jackD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="J♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/queenD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="Q♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+            <Button
+                android:id="@+id/kingD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:text="K♦"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:minHeight="0dp"
+                android:layout_weight="1"
+                android:textColor="@android:color/red"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

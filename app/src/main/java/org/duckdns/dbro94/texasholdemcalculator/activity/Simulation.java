@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,13 +30,13 @@ public class Simulation extends AppCompatActivity {
     TextView tiePercentage;
     TextView lossPercentage;
     TextView txtNumPlayers;
-    TextView txtH1;
-    TextView txtH2;
-    TextView txtF1;
-    TextView txtF2;
-    TextView txtF3;
-    TextView txtTurn;
-    TextView txtRiver;
+    Button txtH1;
+    Button txtH2;
+    Button txtF1;
+    Button txtF2;
+    Button txtF3;
+    Button txtTurn;
+    Button txtRiver;
     int numPlayers;
 
     @Override
@@ -50,13 +51,13 @@ public class Simulation extends AppCompatActivity {
         tiePercentage = (TextView) findViewById(R.id.tiePercentage);
         lossPercentage = (TextView) findViewById(R.id.lossPercentage);
         txtNumPlayers = (TextView) findViewById(R.id.numPlayersSim);
-        txtH1 = (TextView) findViewById(R.id.h1);
-        txtH2 = (TextView) findViewById(R.id.h2);
-        txtF1 = (TextView) findViewById(R.id.f1);
-        txtF2 = (TextView) findViewById(R.id.f2);
-        txtF3 = (TextView) findViewById(R.id.f3);
-        txtTurn = (TextView) findViewById(R.id.turn);
-        txtRiver = (TextView) findViewById(R.id.river);
+        txtH1 = (Button) findViewById(R.id.h1);
+        txtH2 = (Button) findViewById(R.id.h2);
+        txtF1 = (Button) findViewById(R.id.c1);
+        txtF2 = (Button) findViewById(R.id.c2);
+        txtF3 = (Button) findViewById(R.id.c3);
+        txtTurn = (Button) findViewById(R.id.c4);
+        txtRiver = (Button) findViewById(R.id.c5);
 
         txtNumPlayers.setText(Integer.toString(numPlayers));
     }
@@ -80,10 +81,6 @@ public class Simulation extends AppCompatActivity {
             txtNumPlayers.setText(Integer.toString(numPlayers));
             submit();
         }
-    }
-
-    public void submit(View v) {
-        submit();
     }
 
     private void submit() {

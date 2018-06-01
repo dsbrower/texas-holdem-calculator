@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.Simulation" />
+        <activity android:name=".activity.CardSelection"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.Simulation"
-    android:background="@color/background">
+    android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,234 +15,204 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-            <TextView android:id="@+id/lblWinPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Win Percentage: "
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@+id/winPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@+id/percentSign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="%"
-                android:textColor="@color/text"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/lblTiePercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tie Percentage: "
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@+id/tiePercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@id/percentSign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="%"
-                android:textColor="@color/text"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/lblLossPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Loss Percentage: "
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@+id/lossPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@id/percentSign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="%"
-                android:textColor="@color/text"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/lblNumPlayersSim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Number of Players: "
-                android:textColor="@color/text"/>
-
-            <TextView android:id="@+id/numPlayersSim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/lblH1"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Hand Card 1:"
-                android:textColor="@color/text"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <EditText
+                <TextView android:id="@+id/lblWinPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:text="Win"
+                    android:textColor="@color/text"/>
+
+                <TextView android:id="@+id/winPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="50sp"
+                    android:text="100%"
+                    android:textColor="@color/text"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView android:id="@+id/lblTiePercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:text="Tie"
+                    android:textColor="@color/text"/>
+
+                <TextView android:id="@+id/tiePercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="50sp"
+                    android:text="0%"
+                    android:textColor="@color/text"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView android:id="@+id/lblLossPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:text="Loss"
+                    android:textColor="@color/text"/>
+
+                <TextView android:id="@+id/lossPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="50sp"
+                    android:text="0%"
+                    android:textColor="@color/text"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="4">
+
+                <TextView android:id="@+id/lblNumPlayersSim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:layout_gravity="center"
+                    android:text="Number of Players"
+                    android:textSize="16sp"
+                    android:textColor="@color/text"/>
+
+                <TextView android:id="@+id/txtNumPlayers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="4"
+                    android:textSize="100sp"
+                    android:textColor="@color/text"/>
+
+            </LinearLayout>
+
+            <Button
                 android:id="@+id/h1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/lblH2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Hand Card 2:"
-                android:textColor="@color/text"/>
+                android:layout_weight="1"
+                android:textSize="36sp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
-            <EditText
+            <Button
                 android:id="@+id/h2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/lblF1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Flop Card 1:"
-                android:textColor="@color/text"/>
-
-            <EditText
-                android:id="@+id/f1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
+                android:layout_weight="1"
+                android:textSize="36sp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-            <TextView android:id="@+id/lblF2"
+            <Button
+                android:id="@+id/c1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Flop Card 2:"
-                android:textColor="@color/text"/>
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
-            <EditText
-                android:id="@+id/f2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/lblF3"
+            <Button
+                android:id="@+id/c2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Flop Card 3:"
-                android:textColor="@color/text"/>
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
-            <EditText
-                android:id="@+id/f3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/lblTurn"
+            <Button
+                android:id="@+id/c3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Turn:"
-                android:textColor="@color/text"/>
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
-            <EditText
-                android:id="@+id/turn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView android:id="@+id/lblRiver"
+            <Button
+                android:id="@+id/c4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="River:"
-                android:textColor="@color/text"/>
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
-            <EditText
-                android:id="@+id/river"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/text"/>
+            <Button
+                android:id="@+id/c5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:background="@drawable/card_bg"
+                android:text=""/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"
+                android:textSize="30sp"
+                android:layout_gravity="center"
                 android:text="Clear"
                 android:onClick="clear"/>
 
@@ -250,17 +220,14 @@
                 android:id="@+id/fold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"
+                android:textSize="30sp"
+                android:layout_gravity="center"
                 android:text="Folded"
                 android:onClick="fold"/>
 
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit"
-                android:onClick="submit"/>
-
-        </LinearLayout>\
+        </LinearLayout>
 
     </LinearLayout>
 
