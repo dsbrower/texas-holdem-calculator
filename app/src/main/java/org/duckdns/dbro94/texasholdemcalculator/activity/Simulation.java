@@ -17,6 +17,7 @@ import org.duckdns.dbro94.texasholdemcalculator.util.HandEvaluator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class Simulation extends AppCompatActivity {
     private static final int C3 = 5;
     private static final int C4 = 6;
     private static final int C5 = 7;
+
+    ArrayList<String> selectedCards;
 
     TextView winPercentage;
     TextView tiePercentage;
@@ -71,10 +74,12 @@ public class Simulation extends AppCompatActivity {
         txtRiver = (Button) findViewById(R.id.c5);
 
         txtNumPlayers.setText(Integer.toString(numPlayers));
+        selectedCards = new ArrayList<>();
     }
 
     public void selectCard(View v) {
         Intent cs = new Intent(Simulation.this, CardSelection.class);
+        cs.putStringArrayListExtra("SELECTED_CARDS", selectedCards);
         switch(v.getId()) {
             case R.id.h1:
                 startActivityForResult(cs, H1);
@@ -105,6 +110,7 @@ public class Simulation extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             String c = data.getStringExtra("CARD");
+            selectedCards.add(c);
             switch(requestCode) {
                 case H1:
                     txtH1.setText(c);
@@ -144,6 +150,7 @@ public class Simulation extends AppCompatActivity {
         txtTurn.setText("");
         txtRiver.setText("");
         numPlayers = startingNumPlayers;
+        selectedCards.removeAll(selectedCards);
         txtNumPlayers.setText(Integer.toString(numPlayers));
     }
 
