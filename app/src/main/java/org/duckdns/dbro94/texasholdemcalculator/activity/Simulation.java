@@ -1,5 +1,6 @@
 package org.duckdns.dbro94.texasholdemcalculator.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,14 @@ import static org.duckdns.dbro94.texasholdemcalculator.util.Constants.WIN;
 
 public class Simulation extends AppCompatActivity {
 
+    private static final int H1 = 1;
+    private static final int H2 = 2;
+    private static final int C1 = 3;
+    private static final int C2 = 4;
+    private static final int C3 = 5;
+    private static final int C4 = 6;
+    private static final int C5 = 7;
+
     TextView winPercentage;
     TextView tiePercentage;
     TextView lossPercentage;
@@ -38,6 +47,7 @@ public class Simulation extends AppCompatActivity {
     Button txtTurn;
     Button txtRiver;
     int numPlayers;
+    int startingNumPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +55,8 @@ public class Simulation extends AppCompatActivity {
         setContentView(R.layout.activity_simulation);
 
         Intent sim = getIntent();
-        numPlayers = sim.getIntExtra("numPlayers", 5);
+        startingNumPlayers = sim.getIntExtra("numPlayers", 5);
+        numPlayers = startingNumPlayers;
 
         winPercentage = (TextView) findViewById(R.id.winPercentage);
         tiePercentage = (TextView) findViewById(R.id.tiePercentage);
@@ -62,6 +73,65 @@ public class Simulation extends AppCompatActivity {
         txtNumPlayers.setText(Integer.toString(numPlayers));
     }
 
+    public void selectCard(View v) {
+        Intent cs = new Intent(Simulation.this, CardSelection.class);
+        switch(v.getId()) {
+            case R.id.h1:
+                startActivityForResult(cs, H1);
+                break;
+            case R.id.h2:
+                startActivityForResult(cs, H2);
+                break;
+            case R.id.c1:
+                startActivityForResult(cs, C1);
+                break;
+            case R.id.c2:
+                startActivityForResult(cs, C2);
+                break;
+            case R.id.c3:
+                startActivityForResult(cs, C3);
+                break;
+            case R.id.c4:
+                startActivityForResult(cs, C4);
+                break;
+            case R.id.c5:
+                startActivityForResult(cs, C5);
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            String c = data.getStringExtra("CARD");
+            switch(requestCode) {
+                case H1:
+                    txtH1.setText(c);
+                    break;
+                case H2:
+                    txtH2.setText(c);
+                    break;
+                case C1:
+                    txtF1.setText(c);
+                    break;
+                case C2:
+                    txtF2.setText(c);
+                    break;
+                case C3:
+                    txtF3.setText(c);
+                    break;
+                case C4:
+                    txtTurn.setText(c);
+                    break;
+                case C5:
+                    txtRiver.setText(c);
+                    break;
+            }
+            submit();
+        }
+    }
+
     public void clear(View v) {
         winPercentage.setText("");
         tiePercentage.setText("");
@@ -73,6 +143,8 @@ public class Simulation extends AppCompatActivity {
         txtF3.setText("");
         txtTurn.setText("");
         txtRiver.setText("");
+        numPlayers = startingNumPlayers;
+        txtNumPlayers.setText(Integer.toString(numPlayers));
     }
 
     public void fold(View v) {
@@ -137,7 +209,7 @@ public class Simulation extends AppCompatActivity {
         int ties = 0;
         int losses = 0;
 
-        for (int run = 0; run < 10000; run++) {
+        for (int run = 0; run < 1000; run++) {
             List<Card> deck = Deck.getDeck();
             Collections.shuffle(deck);
             List<Card> hand = new LinkedList<>(handOrig);
@@ -157,6 +229,10 @@ public class Simulation extends AppCompatActivity {
                         break;
                     }
                 }
+            }
+
+            for (int j = hand.size(); j < 2; j++) {
+                hand.add(deck.remove(0));
             }
 
             for (int j = comm.size(); j < 5; j++) {
@@ -193,9 +269,9 @@ public class Simulation extends AppCompatActivity {
 
         }
 
-        double winPercent = round(((double)wins / ((double)wins + (double)ties + (double)losses) * 100), 2);
-        double tiePercent = round(((double)ties / ((double)wins + (double)ties + (double)losses) * 100), 2);
-        double lossPercent = round(((double)losses / ((double)wins + (double)ties + (double)losses) * 100), 2);
+        double winPercent = round(((double)wins / ((double)wins + (double)ties + (double)losses) * 100), 1);
+        double tiePercent = round(((double)ties / ((double)wins + (double)ties + (double)losses) * 100), 1);
+        double lossPercent = round(((double)losses / ((double)wins + (double)ties + (double)losses) * 100), 1);
 
         Double[] outcomes = new Double[]{winPercent, tiePercent, lossPercent};
 

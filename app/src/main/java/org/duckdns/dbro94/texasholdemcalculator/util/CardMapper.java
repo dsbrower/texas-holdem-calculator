@@ -9,160 +9,160 @@ public class CardMapper {
     public static Card getCard(String c) {
         Card card = null;
         switch (c) {
-            case "AS":
+            case "A♠":
                 card = new Card(CardValue.ACE, CardSuit.SPADE);
                 break;
-            case "2S":
+            case "2♠":
                 card = new Card(CardValue.TWO, CardSuit.SPADE);
                 break;
-            case "3S":
+            case "3♠":
                 card = new Card(CardValue.THREE, CardSuit.SPADE);
                 break;
-            case "4S":
+            case "4♠":
                 card = new Card(CardValue.FOUR, CardSuit.SPADE);
                 break;
-            case "5S":
+            case "5♠":
                 card = new Card(CardValue.FIVE, CardSuit.SPADE);
                 break;
-            case "6S":
+            case "6♠":
                 card = new Card(CardValue.SIX, CardSuit.SPADE);
                 break;
-            case "7S":
+            case "7♠":
                 card = new Card(CardValue.SEVEN, CardSuit.SPADE);
                 break;
-            case "8S":
+            case "8♠":
                 card = new Card(CardValue.EIGHT, CardSuit.SPADE);
                 break;
-            case "9S":
+            case "9♠":
                 card = new Card(CardValue.NINE, CardSuit.SPADE);
                 break;
-            case "10S":
+            case "10♠":
                 card = new Card(CardValue.TEN, CardSuit.SPADE);
                 break;
-            case "JS":
+            case "J♠":
                 card = new Card(CardValue.JACK, CardSuit.SPADE);
                 break;
-            case "QS":
+            case "Q♠":
                 card = new Card(CardValue.QUEEN, CardSuit.SPADE);
                 break;
-            case "KS":
+            case "K♠":
                 card = new Card(CardValue.KING, CardSuit.SPADE);
                 break;
-            case "AC":
+            case "A♣":
                 card = new Card(CardValue.ACE, CardSuit.CLUB);
                 break;
-            case "2C":
+            case "2♣":
                 card = new Card(CardValue.TWO, CardSuit.CLUB);
                 break;
-            case "3C":
+            case "3♣":
                 card = new Card(CardValue.THREE, CardSuit.CLUB);
                 break;
-            case "4C":
+            case "4♣":
                 card = new Card(CardValue.FOUR, CardSuit.CLUB);
                 break;
-            case "5C":
+            case "5♣":
                 card = new Card(CardValue.FIVE, CardSuit.CLUB);
                 break;
-            case "6C":
+            case "6♣":
                 card = new Card(CardValue.SIX, CardSuit.CLUB);
                 break;
-            case "7C":
+            case "7♣":
                 card = new Card(CardValue.SEVEN, CardSuit.CLUB);
                 break;
-            case "8C":
+            case "8♣":
                 card = new Card(CardValue.EIGHT, CardSuit.CLUB);
                 break;
-            case "9C":
+            case "9♣":
                 card = new Card(CardValue.NINE, CardSuit.CLUB);
                 break;
-            case "10C":
+            case "10♣":
                 card = new Card(CardValue.TEN, CardSuit.CLUB);
                 break;
-            case "JC":
+            case "J♣":
                 card = new Card(CardValue.JACK, CardSuit.CLUB);
                 break;
-            case "QC":
+            case "Q♣":
                 card = new Card(CardValue.QUEEN, CardSuit.CLUB);
                 break;
-            case "KC":
+            case "K♣":
                 card = new Card(CardValue.KING, CardSuit.CLUB);
                 break;
-            case "AH":
+            case "A♥":
                 card = new Card(CardValue.ACE, CardSuit.HEART);
                 break;
-            case "2H":
+            case "2♥":
                 card = new Card(CardValue.TWO, CardSuit.HEART);
                 break;
-            case "3H":
+            case "3♥":
                 card = new Card(CardValue.THREE, CardSuit.HEART);
                 break;
-            case "4H":
+            case "4♥":
                 card = new Card(CardValue.FOUR, CardSuit.HEART);
                 break;
-            case "5H":
+            case "5♥":
                 card = new Card(CardValue.FIVE, CardSuit.HEART);
                 break;
-            case "6H":
+            case "6♥":
                 card = new Card(CardValue.SIX, CardSuit.HEART);
                 break;
-            case "7H":
+            case "7♥":
                 card = new Card(CardValue.SEVEN, CardSuit.HEART);
                 break;
-            case "8H":
+            case "8♥":
                 card = new Card(CardValue.EIGHT, CardSuit.HEART);
                 break;
-            case "9H":
+            case "9♥":
                 card = new Card(CardValue.NINE, CardSuit.HEART);
                 break;
-            case "10H":
+            case "10♥":
                 card = new Card(CardValue.TEN, CardSuit.HEART);
                 break;
-            case "JH":
+            case "J♥":
                 card = new Card(CardValue.JACK, CardSuit.HEART);
                 break;
-            case "QH":
+            case "Q♥":
                 card = new Card(CardValue.QUEEN, CardSuit.HEART);
                 break;
-            case "KH":
+            case "K♥":
                 card = new Card(CardValue.KING, CardSuit.HEART);
                 break;
-            case "AD":
+            case "A♦":
                 card = new Card(CardValue.ACE, CardSuit.DIAMOND);
                 break;
-            case "2D":
+            case "2♦":
                 card = new Card(CardValue.TWO, CardSuit.DIAMOND);
                 break;
-            case "3D":
+            case "3♦":
                 card = new Card(CardValue.THREE, CardSuit.DIAMOND);
                 break;
-            case "4D":
+            case "4♦":
                 card = new Card(CardValue.FOUR, CardSuit.DIAMOND);
                 break;
-            case "5D":
+            case "5♦":
                 card = new Card(CardValue.FIVE, CardSuit.DIAMOND);
                 break;
-            case "6D":
+            case "6♦":
                 card = new Card(CardValue.SIX, CardSuit.DIAMOND);
                 break;
-            case "7D":
+            case "7♦":
                 card = new Card(CardValue.SEVEN, CardSuit.DIAMOND);
                 break;
-            case "8D":
+            case "8♦":
                 card = new Card(CardValue.EIGHT, CardSuit.DIAMOND);
                 break;
-            case "9D":
+            case "9♦":
                 card = new Card(CardValue.NINE, CardSuit.DIAMOND);
                 break;
-            case "10D":
+            case "10♦":
                 card = new Card(CardValue.TEN, CardSuit.DIAMOND);
                 break;
-            case "JD":
+            case "J♦":
                 card = new Card(CardValue.JACK, CardSuit.DIAMOND);
                 break;
-            case "QD":
+            case "Q♦":
                 card = new Card(CardValue.QUEEN, CardSuit.DIAMOND);
                 break;
-            case "KD":
+            case "K♦":
                 card = new Card(CardValue.KING, CardSuit.DIAMOND);
                 break;
             default:

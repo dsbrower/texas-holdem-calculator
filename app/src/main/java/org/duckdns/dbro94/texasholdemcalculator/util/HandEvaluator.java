@@ -9,9 +9,11 @@ import org.duckdns.dbro94.texasholdemcalculator.domain.Rank;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.duckdns.dbro94.texasholdemcalculator.util.Constants.LOSS;
@@ -307,19 +309,51 @@ public class HandEvaluator {
         for (Card card : hand) {
             values[i++] = card.getValue().getCardValue();
         }
-        if (values[6] == values[5] - 1 && values[5] == values[4] - 1 && values[4] == values[3] - 1 && values[3] == values[2] - 1) {
-            return Pair.of(true, new Integer[]{values[2]});
+
+        Set<Integer> valueSet = new HashSet<>(Arrays.asList(values));
+        Integer[] uniqueValues = valueSet.toArray(new Integer[valueSet.size()]);
+        Arrays.sort(uniqueValues, Collections.reverseOrder());
+
+        if (uniqueValues.length == 7) {
+            if (uniqueValues[6] == uniqueValues[5] - 1 && uniqueValues[5] == uniqueValues[4] - 1 && uniqueValues[4] == uniqueValues[3] - 1 && uniqueValues[3] == uniqueValues[2] - 1) {
+                return Pair.of(true, new Integer[]{uniqueValues[2]});
+            }
+            else if (uniqueValues[5] == uniqueValues[4] - 1 && uniqueValues[4] == uniqueValues[3] - 1 && uniqueValues[3] == uniqueValues[2] - 1 && uniqueValues[2] == uniqueValues[1] - 1) {
+                return Pair.of(true, new Integer[]{uniqueValues[1]});
+            }
+            else if (uniqueValues[4] == uniqueValues[3] - 1 && uniqueValues[3] == uniqueValues[2] - 1 && uniqueValues[2] == uniqueValues[1] - 1 && uniqueValues[1] == uniqueValues[0] - 1) {
+                return Pair.of(true, new Integer[]{uniqueValues[0]});
+            }
+            else {
+                List<Integer> valueList = Arrays.asList(uniqueValues);
+                if (valueList.containsAll(Arrays.asList(14, 2, 3, 4, 5))) {
+                    return Pair.of(true, new Integer[]{5});
+                }
+            }
         }
-        else if (values[5] == values[4] - 1 && values[4] == values[3] - 1 && values[3] == values[2] - 1 && values[2] == values[1] - 1) {
-            return Pair.of(true, new Integer[]{values[1]});
+        else if (uniqueValues.length == 6) {
+            if (uniqueValues[5] == uniqueValues[4] - 1 && uniqueValues[4] == uniqueValues[3] - 1 && uniqueValues[3] == uniqueValues[2] - 1 && uniqueValues[2] == uniqueValues[1] - 1) {
+                return Pair.of(true, new Integer[]{uniqueValues[1]});
+            }
+            else if (uniqueValues[4] == uniqueValues[3] - 1 && uniqueValues[3] == uniqueValues[2] - 1 && uniqueValues[2] == uniqueValues[1] - 1 && uniqueValues[1] == uniqueValues[0] - 1) {
+                return Pair.of(true, new Integer[]{uniqueValues[0]});
+            }
+            else {
+                List<Integer> valueList = Arrays.asList(uniqueValues);
+                if (valueList.containsAll(Arrays.asList(14, 2, 3, 4, 5))) {
+                    return Pair.of(true, new Integer[]{5});
+                }
+            }
         }
-        else if (values[4] == values[3] - 1 && values[3] == values[2] - 1 && values[2] == values[1] - 1 && values[1] == values[0] - 1) {
-            return Pair.of(true, new Integer[]{values[0]});
-        }
-        else {
-            List<Integer> valueList = Arrays.asList(values);
-            if (valueList.containsAll(Arrays.asList(14, 2, 3, 4, 5))) {
-                return Pair.of(true, new Integer[]{5});
+        else if (uniqueValues.length == 5) {
+            if (uniqueValues[4] == uniqueValues[3] - 1 && uniqueValues[3] == uniqueValues[2] - 1 && uniqueValues[2] == uniqueValues[1] - 1 && uniqueValues[1] == uniqueValues[0] - 1) {
+                return Pair.of(true, new Integer[]{uniqueValues[0]});
+            }
+            else {
+                List<Integer> valueList = Arrays.asList(uniqueValues);
+                if (valueList.containsAll(Arrays.asList(14, 2, 3, 4, 5))) {
+                    return Pair.of(true, new Integer[]{5});
+                }
             }
         }
 
